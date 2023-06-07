@@ -40,7 +40,7 @@
     <ul class="list-group">
         {% for comunicado in comunicados %}
             <li class="list-group-item">
-                <h5 class="mb-1">{{ forloop.counter }}. {{ comunicado.titulo }}</h5>
+                <h5 class="mb-1">{{ comunicado.correlativo }}. {{ comunicado.titulo }}</h5>
                 <p class="mb-1">{{ comunicado.detalle }}</p>
                 <small>Correlativo: {{ comunicado.correlativo }} | Publicado por: {{ comunicado.publicado_por.username }} | Fecha: {{ comunicado.fecha_envio|date:"d/m/Y" }}</small>
             </li>

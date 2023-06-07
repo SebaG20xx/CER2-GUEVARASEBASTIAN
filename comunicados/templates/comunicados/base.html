@@ -10,29 +10,34 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{% url 'index' %}">Colegio Mbappe</a>
-            <ul class="navbar-nav ms-auto">
-                {% if user.is_authenticated %}
-                    <!-- Enlace para registrar un comunicado si el usuario está autenticado -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'registrar_comunicado' %}">Registrar Comunicado</a>
-                    </li>
-                    <!-- Enlace para cerrar sesión si el usuario está autenticado -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                    </li>
-                    {% if user.is_staff %}
-                        <!-- Enlace para acceder al panel de administración si el usuario es superusuario -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <!-- Enlace para registrar un comunicado si el usuario está autenticado -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'admin:index' %}">Administración</a>
+                            <a class="nav-link" href="{% url 'registrar_comunicado' %}">Registrar Comunicado</a>
+                        </li>
+                        <!-- Enlace para cerrar sesión si el usuario está autenticado -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                        {% if user.is_staff %}
+                            <!-- Enlace para acceder al panel de administración si el usuario es superusuario -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'admin:index' %}">Administración</a>
+                            </li>
+                        {% endif %}
+                    {% else %}
+                        <!-- Enlace para iniciar sesión si el usuario no está autenticado -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}?next={% url 'registrar_comunicado' %}">Login</a>
                         </li>
                     {% endif %}
-                {% else %}
-                    <!-- Enlace para iniciar sesión si el usuario no está autenticado -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}?next={% url 'registrar_comunicado' %}">Login</a>
-                    </li>
-                {% endif %}
-            </ul>
+                </ul>
+            </div>
         </div>
     </nav>
 
